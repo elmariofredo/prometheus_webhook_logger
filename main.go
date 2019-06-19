@@ -20,7 +20,8 @@ var (
 	waitGroup  = &sync.WaitGroup{}
 	configFile = flag.String("config", "/config/logger.yaml", "The logger configuration file")
 	debug      = flag.Bool("debug", false, "Set Log to debug level and print as text")
-	Usage      = func() {
+	//Usage show info
+	Usage = func() {
 		fmt.Fprintf(flag.CommandLine.Output(), "Usage of %s:\n", os.Args[0])
 		flag.PrintDefaults()
 	}
