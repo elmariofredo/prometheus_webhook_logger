@@ -1,0 +1,41 @@
+{                                                                                                                                                                                   
+  "version": "2",                                                                                                                                                                   
+  "status": "firing",                                                                                                                                                               
+  "alerts": [                                                                                                                                                                       
+    {                                                                                                                                                                               
+      "labels": {                                                                                                                                                                   
+        "alertname": "KubeQuotaExceeded",                                                                                                                                           
+        "namespace": "pdcin1-sso",                                                                                                                                                  
+        "cluster": "test.onprem.in.prod",                                                                                                                                          
+        "country": "in",                                                                                                                                                            
+        "severity": "note",                                                                                                                                                         
+        "resposible_team": "tmi",                                                                                                                                                   
+        "env_type": "prod"                                                                                                                                                          
+      },                                                                                                                                                                            
+      "annotations": {                                                                                                                                                              
+        "message": "Static message"                                                                                                                                                 
+      },                                                                                                                                                                            
+      "status": "firing",                                                                                                                                                           
+      "startsAt": "2016-11-02T16:00:00Z",                                                                                                                                           
+      "endsAt": "2016-10-27T14:27:00Z"                                                                                                                                              
+    },
+    {                                                                                                                                                                               
+        "labels": {                                                                                                                                                                   
+          "alertname": "KubeQuotaExceeded2",                                                                                                                                           
+          "namespace": "pdcin1-sso2",                                                                                                                                                  
+          "cluster": "test.onprem.cz.prod2",                                                                                                                                          
+          "country": "in2",                                                                                                                                                            
+          "severity": "note2",                                                                                                                                                         
+          "resposible_team": "tmi2",                                                                                                                                                   
+          "env_type": "prod2"                                                                                                                                                          
+        },                                                                                                                                                                            
+        "annotations": {                                                                                                                                                              
+          "message": "Static message2"                                                                                                                                                 
+        },                                                                                                                                                                            
+        "status": "firing",                                                                                                                                                           
+        "startsAt": "2016-11-02T16:00:00Z",                                                                                                                                           
+        "endsAt": "2016-10-27T14:27:00Z"                                                                                                                                              
+      }                                            
+
+  ]                                                                                                                                                                                 
+}           

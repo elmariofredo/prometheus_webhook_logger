@@ -1,0 +1,32 @@
+{
+  "version": "2",
+  "status": "firing",
+  "alerts": [
+    {
+      "labels": {
+        "location": "dc1",
+        "service": "MySQL",
+        "instance": "mysqldb-01",
+        "severity": "critical"
+      },
+      "annotations": {
+        "description": "MySQL service is unreachable"
+      },
+      "startsAt": "2016-10-27T14:27:00Z",
+      "endsAt": "2016-10-27T14:27:00Z"
+    },
+    {
+      "labels": {
+        "location": "dc1",
+        "service": "filesystem (/var)",
+        "instance": "mysqldb-01",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "Filesystem (/var) has reached 80%"
+      },
+      "startsAt": "2016-11-02T16:00:00Z",
+      "endsAt": "2016-10-27T14:27:00Z"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: prometheus-logger-config
+ namespace: monitoring
+ labels:
+    app: prometheus-logger
+    
+data:
+  logger.yml: |
+    WebhookAddress:  0.0.0.0:9099   
+---
+# Source: prometheus-logger/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-logger
+  namespace: monitoring
+  labels:
+    app: prometheus-logger
+    monitoring: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http-metrics
+      port: 9099
+      targetPort: http
+      protocol: TCP
+  selector:
+    app: prometheus-logger
+    release: prometheus-logger
+
+---
+# Source: prometheus-logger/templates/deployment.yaml
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: prometheus-logger
+  namespace: monitoring
+  labels:
+    app: prometheus-logger
+    
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-logger
+      release: prometheus-logger
+      
+  template:
+    metadata:
+      labels:
+        app: prometheus-logger
+        release: prometheus-logger
+        
+    spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: prometheus-logger-config
+      containers:
+        - name: prometheus-logger
+          image: "sysincz/prometheus_webhook_logger:latest"
+          args:
+          - -config 
+          - /config/logger.yml
+          - -debug
+          imagePullPolicy: Always
+         
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+          ports:
+          - name: http
+            containerPort: 9099
+            protocol: TCP
+          
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 9099
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 9099
+
+          resources:
+            limits:
+              cpu: 10m
+              memory: 32Mi
+            requests:
+              cpu: 1m
+              memory: 8Mi
