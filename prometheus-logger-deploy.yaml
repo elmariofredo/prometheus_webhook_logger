@@ -61,7 +61,8 @@ spec:
             name: prometheus-logger-config
       containers:
         - name: prometheus-logger
-          image: "sysincz/prometheus_webhook_logger:latest"
+#          image: "sysincz/prometheus_webhook_logger:latest"
+          image: "registry.eit.zone/external/sysincz-prometheus_webhook_logger:v0.1"
           args:
           - -config 
           - /config/logger.yml

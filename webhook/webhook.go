@@ -1,6 +1,7 @@
 package webhook
 
 import (
+	"fmt"
 	"os"
 	"os/signal"
 	"sync"
@@ -23,6 +24,10 @@ func init() {
 	logrus.SetLevel(logrus.DebugLevel)
 }
 
+func healthz(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Ok!")
+}
+
 //Run main function for webhook
 func Run(myConfigFromMain config.Config, alertsChannel chan types.Alert, waitGroup *sync.WaitGroup) {
 	log.Info("Webhook run")
@@ -34,9 +39,10 @@ func Run(myConfigFromMain config.Config, alertsChannel chan types.Alert, waitGro
 	// Set up a channel to handle shutdown:
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, os.Kill, os.Interrupt)
-
+	http.HandleFunc("/healthz", healthz)
+	http.Handle("/alerts", &Handler{AlertsChannel: alertsChannel})
 	// Listen for webhooks:
-	http.ListenAndServe(myConfig.WebhookAddress, &Handler{AlertsChannel: alertsChannel})
+	http.ListenAndServe(myConfig.WebhookAddress, nil)
 
 	// Wait for shutdown:
 	for {
