@@ -11,7 +11,7 @@ import (
 
 func callLog(alert types.Alert) {
 	//a := RunTemplate("{{ printf \"%#v\" . }}", alert)
-	log.WithFields(logrus.Fields{"Alert": &alert}).Info()
+	log.WithFields(logrus.Fields{"alertData": &alert}).Info()
 	//fmt.Printf("%+v\n", varBinds)
 
 }
