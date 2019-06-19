@@ -79,17 +79,18 @@ func validatePayload(payload []byte, URLValues map[string][]string) ([]types.Ale
 		//if alertDetails.Status == status {
 		// Make a new alert:
 		alerts = append(alerts, types.Alert{
-			Status:            alertDetails.Status,
-			Labels:            alertDetails.Labels,
-			Annotations:       alertDetails.Annotations,
-			StartsAt:          alertDetails.StartsAt,
-			EndsAt:            alertDetails.EndsAt,
-			Receiver:          prometheusData.Receiver,
-			GroupLabels:       prometheusData.GroupLabels,
-			CommonLabels:      prometheusData.CommonLabels,
-			CommonAnnotations: prometheusData.CommonAnnotations,
-			ExternalURL:       prometheusData.ExternalURL,
-			URLValues:         URLValues,
+			status:            alertDetails.Status,
+			labels:            alertDetails.Labels,
+			annotations:       alertDetails.Annotations,
+			startsAt:          alertDetails.StartsAt,
+			endsAt:            alertDetails.EndsAt,
+			generatorURL:      alertDetails.GeneratorURL
+			receiver:          prometheusData.Receiver,
+			groupLabels:       prometheusData.GroupLabels,
+			commonLabels:      prometheusData.CommonLabels,
+			commonAnnotations: prometheusData.CommonAnnotations,
+			externalURL:       prometheusData.ExternalURL,
+			urlValues:         URLValues,
 		})
 		//}
 
