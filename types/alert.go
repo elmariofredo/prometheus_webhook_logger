@@ -6,20 +6,20 @@ import (
 
 //Alert combination of prometheus alert and webhook (webhook with one alert)
 type Alert struct {
-	address      string
-	status       string
-	annotations  map[string]string
-	labels       map[string]string
-	startsAt     time.Time
-	endsAt       time.Time
-	generatorURL string
+	Address      string            `json:"address"`
+	Status       string            `json:"status"`
+	Annotations  map[string]string `json:"annotations"`
+	Labels       map[string]string `json:"labels"`
+	StartsAt     time.Time         `json:"startsAt"`
+	EndsAt       time.Time         `json:"endsAt"`
+	GeneratorURL string            `json:"generatorURL"`
 
 	//Prometheus webhook data
-	receiver          string
-	groupLabels       map[string]string
-	commonLabels      map[string]string
-	commonAnnotations map[string]string
-	externalURL       string
+	Receiver          string            `json:"receiver"`
+	GroupLabels       map[string]string `json:"groupLabels"`
+	CommonLabels      map[string]string `json:"commonLabels"`
+	CommonAnnotations map[string]string `json:"commonAnnotations"`
+	ExternalURL       string            `json:"externalURL"`
 	//Get from Url
-	values map[string][]string
+	URLValues map[string][]string `json:"urlValues"`
 }
